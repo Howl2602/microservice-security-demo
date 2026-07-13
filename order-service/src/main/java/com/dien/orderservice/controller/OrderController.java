@@ -1,8 +1,13 @@
 package com.dien.orderservice.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.dien.orderservice.entity.CustomerOrder;
+import com.dien.orderservice.service.OrderService;
 
 import java.util.List;
 
@@ -10,12 +15,20 @@ import java.util.List;
 @RequestMapping("/orders")
 
 public class OrderController {
+
+    private final OrderService orderService;
+
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
     @GetMapping
-    public List<String> getAllOrders(){
-        return List.of(
-                "Order #1001",
-                "Order #1002",
-                "Order #1003"
-        );
+    public List<CustomerOrder> getAllOrders(){
+        return orderService.getAllOrders();
+    }
+
+    @PostMapping
+    public CustomerOrder createOrder(@RequestBody CustomerOrder order) {
+        return orderService.createOrder(order);
     }
 }
