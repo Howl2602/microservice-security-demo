@@ -22,4 +22,11 @@ public class InventoryService {
     public CustomerInventory createInventory(CustomerInventory inventory) {
         return inventoryRepository.save(inventory);
     }
+
+    public CustomerInventory getInventoryByProductName(String productName) {
+        return inventoryRepository
+                .findByProductName(productName)
+                .orElse(null);
+    }
+
 }

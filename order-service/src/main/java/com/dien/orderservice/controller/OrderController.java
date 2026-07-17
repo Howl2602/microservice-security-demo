@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+import com.dien.orderservice.dto.InventoryResponse;
 
 import com.dien.orderservice.entity.CustomerOrder;
 import com.dien.orderservice.service.OrderService;
@@ -31,4 +33,12 @@ public class OrderController {
     public CustomerOrder createOrder(@RequestBody CustomerOrder order) {
         return orderService.createOrder(order);
     }
+
+    @GetMapping("/check/{productName}")
+    public InventoryResponse checkInventory(
+            @PathVariable String productName){
+
+        return orderService.checkInventory(productName);
+    }
+
 }

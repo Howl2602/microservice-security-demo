@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.dien.inventoryservice.entity.CustomerInventory;
 import com.dien.inventoryservice.service.InventoryService;
@@ -30,5 +31,12 @@ public class InventoryController {
     @PostMapping
     public CustomerInventory createInventory(@RequestBody CustomerInventory inventory){
         return inventoryService.createInventory(inventory);
+    }
+
+    @GetMapping("/{productName}")
+    public CustomerInventory getInventoryByProductName(
+            @PathVariable String productName) {
+        return inventoryService.getInventoryByProductName(productName);
+
     }
 }
