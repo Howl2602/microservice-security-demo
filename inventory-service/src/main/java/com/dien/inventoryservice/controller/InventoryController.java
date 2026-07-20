@@ -13,7 +13,7 @@ import com.dien.inventoryservice.service.InventoryService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/inventory")
+@RequestMapping("/api/inventory")
 
 public class InventoryController {
 

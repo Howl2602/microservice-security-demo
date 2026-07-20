@@ -43,7 +43,7 @@ public class OrderService {
     public InventoryResponse checkInventory(String productName) {
 
         String url =
-                "http://localhost:8081/inventory/" + productName;
+                "http://INVENTORY-SERVICE/api/inventory/" + productName;
 
         return restTemplate.getForObject(
                 url,
