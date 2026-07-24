@@ -5,6 +5,7 @@ import com.dien.userservice.dto.LoginRequest;
 import com.dien.userservice.dto.RegisterRequest;
 import com.dien.userservice.entity.User;
 import com.dien.userservice.repository.UserRepository;
+import com.dien.userservice.security.JwtService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,16 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     public UserService(UserRepository userRepository,
-                       PasswordEncoder passwordEncoder) {
+                       PasswordEncoder passwordEncoder,
+                       JwtService jwtService) {
+
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
+
     }
 
     //CRUD
@@ -96,7 +102,12 @@ public class UserService {
             throw new RuntimeException("Wrong password");
         }
 
-        return new AuthResponse("Login success", null);
+        String token = jwtService.generateToken(user);
+
+        return new AuthResponse(
+                "Login success",
+                token
+        );
     }
 
 }

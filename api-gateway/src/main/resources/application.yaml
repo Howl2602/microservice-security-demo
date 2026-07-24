@@ -4,8 +4,26 @@ server:
 spring:
   application:
     name: api-gateway
+
   cloud:
     gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:5500"
+              - "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
       routes:
         - id: order-service
           uri: lb://ORDER-SERVICE
@@ -26,6 +44,11 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/api/auth/**
+
+        - id: user-service-admin
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/admin/**
 
 eureka:
   client:

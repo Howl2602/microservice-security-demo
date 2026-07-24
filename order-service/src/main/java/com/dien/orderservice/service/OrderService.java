@@ -37,7 +37,7 @@ public class OrderService {
             throw new RuntimeException("Out of stock");
         }
 
-        return orderRepository.save(order);
+        return orderRepository.save(order) ;
     }
 
     public InventoryResponse checkInventory(String productName) {
