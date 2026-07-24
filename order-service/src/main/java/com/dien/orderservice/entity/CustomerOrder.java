@@ -8,7 +8,6 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "orders")
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,12 +18,15 @@ public class CustomerOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 80)
     private String customerName;
 
+    @Column(nullable = false, length = 120)
     private String productName;
 
+    @Column(nullable = false)
     private Integer quantity;
 
+    @Column(nullable = false)
     private Double totalPrice;
-
 }

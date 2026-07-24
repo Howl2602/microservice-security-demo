@@ -1,0 +1,12 @@
+eureka:
+  client:
+    enabled: false
+
+spring:
+  cloud:
+    discovery:
+      enabled: false
+
+security:
+  jwt:
+    secret: microshield-demo-secret-key-2026-change-me

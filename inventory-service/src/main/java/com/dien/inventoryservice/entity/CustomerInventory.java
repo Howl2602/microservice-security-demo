@@ -8,18 +8,19 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "inventory")
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerInventory {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false, length = 120)
     private String productName;
 
+    @Column(nullable = false)
     private Integer stock;
-
 }
